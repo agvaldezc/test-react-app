@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.scss';
 
-import TicTacToe from '../TicTacToe/TicTacToe';
+import Piano from '../Piano/Piano';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <TicTacToe />
+        <Piano></Piano>
       </div>
     );
   }

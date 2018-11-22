@@ -3,17 +3,36 @@ import './Board.scss';
 
 import BoardSpace from '../BoardSpace/BoardSpace';
 
-class Board extends Component {
-    renderBoardSpace(num: Number) {
-        return <BoardSpace value={num}/>;
+interface Props {
+    squares: Array<any>;
+    onClick: (i: number) => any;
+}
+
+interface State {
+    squares: Array<any>;
+    isXsTurn: Boolean;
+}
+
+class Board extends Component<Props, State> {
+
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            squares: Array(9).map(x => null),
+            isXsTurn: true
+        };
+   }
+
+    renderBoardSpace(i: number) {
+        return <BoardSpace 
+                    value={this.props.squares[i]}
+                    onClick={() => this.props.onClick(i)}
+                />;
     }
 
     render() {
-        const status = 'Next player: X';
-
         return (
             <div className='Board'>
-                <div className='status'>{status}</div>
                 <div className='board-row'>
                     {this.renderBoardSpace(0)}
                     {this.renderBoardSpace(1)}
